@@ -1,0 +1,17 @@
+name: Compile Typescript
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: Compile Typescript
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout current state of the repo
+      uses: actions/checkout@v2
+
+    - name: Install dependencies in CI mode
+      run: npm ci
+
+    - name: Compile Typescript
+      run: tsc src/index.ts
