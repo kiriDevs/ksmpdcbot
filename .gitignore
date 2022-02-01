@@ -1,0 +1,5 @@
+# Ignore library root
+/node_modules/
+
+# Ignore secrets files
+/.env
