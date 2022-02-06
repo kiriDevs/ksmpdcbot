@@ -1,10 +1,11 @@
 {
   "name": "ksmpdcbot",
   "version": "1.0.0",
-  "main": "src/index.ts",
+  "main": "src/index.js",
   "scripts": {
-    "start": "ts-node .",
-    "test": "nodemon --ext ts --exec npm start"
+    "test": "nodemon --ext ts --exec ts-node src/index.ts",
+    "build": "tsc --outDir target/ src/index.ts",
+    "start": "node target/"
   },
   "repository": {
     "type": "git",

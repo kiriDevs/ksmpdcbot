@@ -13,5 +13,5 @@ jobs:
     - name: Install dependencies in CI mode
       run: npm ci
 
-    - name: Compile Typescript
-      run: tsc src/index.ts
+    - name: Build project using npm script
+      run: npm run build
