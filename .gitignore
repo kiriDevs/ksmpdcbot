@@ -1,5 +1,8 @@
 # Ignore library root
 /node_modules/
 
+# Ignore build output
+/target/
+
 # Ignore secrets files
 /.env
