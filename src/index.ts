@@ -27,7 +27,6 @@ const serverStatusUpdater = new ServerStatusUpdater({
 
 const twitch = new TwitchClient(env.TWITCH_ID, env.TWITCH_SECRET);
 twitch.authenticate();
-//setTimeout(() => { twitch.deauthenticate(); }, 3000);
 
 client.once("ready", async () => {
     console.log("Connected to Discord Gateway!");
