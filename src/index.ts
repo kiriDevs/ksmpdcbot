@@ -7,7 +7,7 @@ import CommandHandler from "./commands";
 const env = parseenv(rfs(path(__dirname, "..", ".env")));
 
 import ServerStatusUpdater from "./ServerStatusUpdater";
-import TwitchClient from "./Twitch";
+import { TwitchClient } from "./Twitch";
 import TwitchCommandHandler from "./TwitchCommand";
 
 const client: Client = new Client({ "intents": [Intents.FLAGS.GUILDS] });

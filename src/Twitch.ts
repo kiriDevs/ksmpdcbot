@@ -3,19 +3,33 @@ import RequestEvent from "./RequestEvent";
 import TwitchRoutes from "./TwitchRoutes";
 const { get, post } = axios;
 
-type TTwitchSession =
+export type TTwitchSession =
     { authenticated: true, token: string }
     | { authenticated: false, token: null }
 
-interface ITwitchClient {
+export interface ITwitchClient {
     credentials: {
         cid: string,
         secret: string
     },
-    session: TTwitchSession
+    session: TTwitchSession,
+    authenticate: () => void,
+    deauthenticate: () => void;
+    get: (
+        url: string,
+        params: object,
+        cb: (event: RequestEvent) => void,
+        isRetry?: boolean
+    ) => void,
+    post: (
+        url: string,
+        params: object,
+        cb: (event: RequestEvent) => void,
+        isRetry?: boolean
+    ) => void
 }
 
-const TwitchClient = class implements ITwitchClient {
+export const TwitchClient = class implements ITwitchClient {
     static API_SCOPES = "";
 
     credentials: ITwitchClient["credentials"];
@@ -156,5 +170,3 @@ const TwitchClient = class implements ITwitchClient {
         });
     };
 };
-
-export default TwitchClient;
