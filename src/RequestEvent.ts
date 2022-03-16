@@ -1,4 +1,4 @@
-type DoneRequestEvent = { type: "done", data: { [key: string]: string } };
+type DoneRequestEvent = { type: "done", data: object };
 type RetryRequestEvent = { type: "retry" };
 type ErrorRequestEvent = { type: "error", error: Error|string };
 
