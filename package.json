@@ -6,7 +6,7 @@
     "test": "nodemon --ext ts --exec ts-node src/index.ts",
     "build": "tsc --outDir target/ src/index.ts",
     "start": "node target/",
-    "lint": "eslint ."
+    "lint": "eslint src/"
   },
   "repository": {
     "type": "git",
