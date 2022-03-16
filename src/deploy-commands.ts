@@ -8,7 +8,6 @@ import { join as path } from "path";
 const env = parseenv(rfs(path(__dirname, "..", ".env")));
 
 const commands = [
-    new SlashCommandBuilder().setName("ping").setDescription("Replies with pong!"),
     new SlashCommandBuilder().setName("iskirilive").setDescription("Tells you if kiri is live!")
 ].map(command => command.toJSON());
 
