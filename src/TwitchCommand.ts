@@ -1,20 +1,34 @@
 import { CommandInteraction } from "discord.js";
 import RequestEvent from "./RequestEvent";
 import TwitchRoutes from "./TwitchRoutes";
+import { ITwitchClient } from "./Twitch";
 
-const TwitchCommandHandler = (twitch: any) => {
+interface ITwitchBroadcaster {
+    broadcaster_id: string,
+    broadcaster_login: string,
+    broadcaster_name: string,
+    broadcaster_language: string,
+    game_id: string,
+    game_name: string,
+    title: string,
+    delay: number
+}
+
+interface ITwitchBroadcasterListResponse {
+    streamers: ITwitchBroadcaster[]
+}
+
+const TwitchCommandHandler = (twitch: ITwitchClient) => {
     return (interaction: CommandInteraction) => {
         twitch.get(TwitchRoutes.channel.details, { broadcaster_id: "161030471" }, (event: RequestEvent) => {
             if (event.type == "done") {
-                const streamer = event.data.data[0];
-                // @ts-ignore
-                const live = streamer["delay"] != 0;
+                const resData = event.data as ITwitchBroadcasterListResponse;
+                const streamer = resData.streamers[0];
+                const live = streamer.delay != 0;
                 if (live) {
                     interaction.reply("Kiri is **on**line!");
-                    // @ts-ignore
                     if (streamer["game_name"] == "Minecraft") {
-                        // @ts-ignore
-                        if (streamer["title"].contains("kiriSMP")) {
+                        if (streamer["title"].includes("kiriSMP")) {
                             interaction.followUp("**They're even streaming the kiriSMP!** :partying_face:");
                         }
                         interaction.followUp("They're also streaming Minecraft, but not the kiriSMP.");
