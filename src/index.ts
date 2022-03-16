@@ -8,7 +8,6 @@ const env = parseenv(rfs(path(__dirname, "..", ".env")));
 
 import ServerStatusUpdater from "./ServerStatusUpdater";
 import TwitchClient from "./Twitch";
-import PingCommandHandler from "./PingCommand";
 import TwitchCommandHandler from "./TwitchCommand";
 
 const client: Client = new Client({ "intents": [Intents.FLAGS.GUILDS] });
@@ -48,7 +47,6 @@ const commands = new CommandHandler();
 client.on("interactionCreate", async (interaction) => {
     commands.handle(interaction);
 });
-commands.register("ping", PingCommandHandler);
 commands.register("iskirilive", TwitchCommandHandler(twitch));
 
 client.login(env.DISCORD_TOKEN);
